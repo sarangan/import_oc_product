@@ -16,19 +16,25 @@ $file = fopen('data.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
     $product_id = 0;
     $product_name = str_ireplace('"', '', $line[0]);
+    $product_name = mysqli_real_escape_string($conn, $product_name);
     $manufacture_id = 0;
     $sku = $line[6];
     $description = str_ireplace('"', '', $line[1]);
+    $description = mysqli_real_escape_string($conn, $description);
     $meta_tag_title = ($line[2]) ? $line[2] : $product_name;
     $meta_tag_title = str_ireplace('"', '', $meta_tag_title);
+    $meta_tag_title = mysqli_real_escape_string($conn, $meta_tag_title);
     $meta_tag_desc = $line[3];
+    $meta_tag_desc = mysqli_real_escape_string($conn, $meta_tag_desc);
     $keywords = $line[4];
+    $keywords = mysqli_real_escape_string($conn, $keywords);
     $price = ($line[7])? $line[7] : '0.00';
     $quantity = ($line[8])? $line[8] : '1';
     $minimum = ($line[9])? $line[9] : '1';
     $subtract = ($line[10])? ((strtoupper($line[10]) === 'YES')? '1' : '0') : '1';
     $stock_status_id = ($line[11])? ((strtoupper($line[11]) === 'YES')? '5' : '0') : '1';
     $manufacture_name = ($line[5])? strtoupper(trim($line[5])) : '';
+    $manufacture_name = mysqli_real_escape_string($conn, $manufacture_name);
     
     if($product_name){
         echo "--------------------------------------------------<br/>";
