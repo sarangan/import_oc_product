@@ -242,7 +242,6 @@ while (($line = fgetcsv($file)) !== FALSE) {
         
         echo "<br/>END LINE:<br/>";
         echo "--------------------------------------------------<br/>";
-        break;
     }
 }
 fclose($file);
